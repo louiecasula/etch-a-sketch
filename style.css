@@ -24,10 +24,21 @@ main {
 }
 
 .board {
-    height: 400px;
-    width: 400px;
+    display: flex;
+    flex: auto;
+    height: 360px;
     border-radius: 6px;
     border: 16px solid red;
+}
+
+.row {
+    
+}
+
+.square {
+    height: 1.33em;
+    width: 1.33em;
+    border: 0.01em solid black;
 }
 
 footer {
