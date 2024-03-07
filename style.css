@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Micro+5&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
+    background-color: #dffffd;
     font-family: "Micro 5", sans-serif;
     margin: 0;
 }
@@ -25,13 +26,14 @@ main {
 }
 
 .board {
-    height: 400px;
-    width: 400px;
+    height: 360px;
+    width: 360px;
     display: flex;
     flex-direction: column;
     border-radius: 6px;
     border: 1em solid red;
     margin: 0 auto;
+    box-shadow: 2px 2px 2px, 2px 2px 2px;
 }
 
 .row {
