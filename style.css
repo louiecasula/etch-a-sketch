@@ -2,7 +2,6 @@
 
 body {
     font-family: "Micro 5", sans-serif;
-    height: 100vh;
     margin: 0;
 }
 
@@ -10,6 +9,7 @@ header {
     display: flex;
     flex: auto;
     justify-content: center;
+    align-items: center;
 }
 
 header h1 {
@@ -21,24 +21,29 @@ main {
     display: flex;
     flex: auto;
     justify-content: center;
+    align-items: center;
 }
 
 .board {
+    height: 400px;
+    width: 400px;
     display: flex;
-    flex: auto;
-    height: 360px;
+    flex-direction: column;
     border-radius: 6px;
-    border: 16px solid red;
+    border: 1em solid red;
+    margin: 0 auto;
 }
 
 .row {
-    
+    display: flex;
+    flex: auto;
+    flex-direction: row;
 }
 
 .square {
-    height: 1.33em;
-    width: 1.33em;
+    flex: 1;
     border: 0.01em solid black;
+    background-color: white;
 }
 
 footer {
