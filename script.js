@@ -17,7 +17,7 @@ let createBoard = (length) => {
         for (let j = 0; j < length; j++) {
             let square = document.createElement('div');
             square.classList.add('square');
-            square.addEventListener('click', colorIn);
+            square.addEventListener('mousedown', colorIn);
             square.addEventListener('mouseover', colorInHover);
             row.appendChild(square);
         }
