@@ -21,8 +21,10 @@ header h1 {
 main {
     display: flex;
     flex: auto;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .board {
@@ -46,6 +48,22 @@ main {
     flex: 1;
     border: 0.01em solid black;
     background-color: white;
+}
+
+.toolbar {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 100px;
+    gap: 10px;
+    margin-right: 100px;
+}
+
+h3 {
+    font-size: 2em;
+    margin: 0;
 }
 
 .slider:hover {
