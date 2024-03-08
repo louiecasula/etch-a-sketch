@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Micro+5&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-body {
+body, html {
     background-color: #dffffd;
     font-family: "Micro 5", sans-serif;
+    height: 100%;
     margin: 0;
 }
 
@@ -20,11 +21,16 @@ header h1 {
 
 main {
     display: flex;
-    flex: auto;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    width: 100%;
+}
+
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 50px; */
 }
 
 .board {
@@ -34,7 +40,7 @@ main {
     flex-direction: column;
     border-radius: 6px;
     border: 1em solid red;
-    margin: 0 auto;
+    margin-right: 60px;
     box-shadow: 2px 2px 2px 2px, 2px 2px 2px 2px;
 }
 
@@ -54,14 +60,13 @@ main {
     display: flex;
     flex: auto;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     max-width: 100px;
     gap: 10px;
-    margin-right: 100px;
 }
 
-h3 {
+.dimension {
     font-size: 2em;
     margin: 0;
 }

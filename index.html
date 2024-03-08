@@ -10,16 +10,18 @@
 <body>
     <header><h1>EAS</h1></header>
     <main>
-        <div class="board"></div>
-        <div class="toolbar">
-            <div class="boardSize"></div>
-            <div class="slidecontainer">
-                <input type="range" min="1" max="64" value="16" class="slider" id="myRange">
+        <div class="app-container">
+            <div class="board"></div>
+            <div class="toolbar">
+                <div class="boardSize"></div>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="64" value="16" class="slider" id="myRange">
+                </div>
+                <button id="clear">Clear</button>
+                <input id="color" type="radio" name="mode" checked="checked">Normal</input>
+                <input id="darken" type="radio" name="mode">Dark</input>
+                <input id="rainbow" type="radio" name="mode">Rainbow</input>
             </div>
-            <button id="clear">Clear</button>
-            <input id="color" type="radio" name="mode">Normal</input>
-            <input id="darken" type="radio" name="mode">Dark</input>
-            <input id="rainbow" type="radio" name="mode">Rainbow</input>
         </div>
     </main>
     <footer>

@@ -36,7 +36,7 @@ function colorInHover() {
 }
 
 let updateBoardSize = (length) => {
-    boardSize.innerHTML = `<h3>${length} x ${length}</h3>`;
+    boardSize.innerHTML = `<h3 class="dimension">${length} x ${length}</h3>`;
 }
 
 const clear = document.querySelector('#clear');
