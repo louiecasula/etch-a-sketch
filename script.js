@@ -28,9 +28,9 @@ let updateBoardSize = (length) => {
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', function(){
     const squares = document.querySelectorAll('.square');
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].style.cssText = 'background-color: white';
-    };
+    squares.forEach(square => {
+        square.style.cssText = 'background-color: white';
+    });
 });
 
 // How can we make this not repeat?
