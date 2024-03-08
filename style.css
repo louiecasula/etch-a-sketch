@@ -62,12 +62,11 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 100px;
     gap: 10px;
+    font-size: 2em;
 }
 
 .dimension {
-    font-size: 2em;
     margin: 0;
 }
 
