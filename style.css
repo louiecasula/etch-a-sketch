@@ -48,6 +48,10 @@ main {
     background-color: white;
 }
 
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
 footer {
     display: flex;
     flex: auto;
