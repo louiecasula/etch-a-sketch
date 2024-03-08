@@ -4,6 +4,11 @@ const slider = document.getElementById("myRange");
 
 const boardSize = document.querySelector('.boardSize');
 
+let isMouseDown = false;
+
+document.addEventListener('mousedown', () => isMouseDown = true);
+document.addEventListener('mouseup', () => isMouseDown = false);
+
 let createBoard = (length) => {
     board.innerHTML = ``;
     for (let i = 0; i < length; i++) {
@@ -11,14 +16,23 @@ let createBoard = (length) => {
         row.classList.add('row');
         for (let j = 0; j < length; j++) {
             let square = document.createElement('div');
-            square.addEventListener('click', function(){
-                square.style.cssText = 'background-color: black;';
-            })
             square.classList.add('square');
+            square.addEventListener('click', colorIn);
+            square.addEventListener('mouseover', colorInHover);
             row.appendChild(square);
         }
         board.appendChild(row);
     };
+}
+
+function colorIn() {
+    this.style.backgroundColor = 'black';
+}
+
+function colorInHover() {
+    if (isMouseDown) {
+        this.style.backgroundColor = 'black';
+    }
 }
 
 let updateBoardSize = (length) => {

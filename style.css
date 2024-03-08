@@ -49,7 +49,7 @@ main {
 }
 
 .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
+    opacity: 1;
 }
 
 footer {
