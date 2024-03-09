@@ -2,6 +2,8 @@ const board = document.querySelector('.board');
 const slider = document.getElementById("myRange");
 let length = slider.value;
 const boardSize = document.querySelector('.boardSize');
+
+let currentMode = 'normal';
 let color = 'black';
 
 let isMouseDown = false;
@@ -24,12 +26,27 @@ let createBoard = (length) => {
     };
 }
 
+function updateColor() {
+    switch(currentMode){
+        case('erase'):
+            return 'white';
+        case('shade'):
+            return 'grey';
+        case('rainbow'):
+            return 'pink';
+        default:
+            return 'black';
+    }
+}
+
 function colorIn(color) {
+    color = updateColor();
     this.style.backgroundColor = color;
 }
 
 function colorInHover(color) {
     if (isMouseDown) {
+        color = updateColor();
         this.style.backgroundColor = color;
     }
 }
@@ -51,6 +68,13 @@ slider.oninput = function() {
     createBoard(length);
     updateBoardSize(length);
 };
+
+const settings = document.querySelectorAll('.mode');
+settings.forEach(setting => {
+    setting.addEventListener('change', function() {
+        currentMode = setting.id;
+    })
+})
 
 // Initialization
 createBoard(length);
