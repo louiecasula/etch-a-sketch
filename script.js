@@ -1,11 +1,10 @@
 const board = document.querySelector('.board');
-
 const slider = document.getElementById("myRange");
-
+let length = slider.value;
 const boardSize = document.querySelector('.boardSize');
+let color = 'black';
 
 let isMouseDown = false;
-
 document.addEventListener('mousedown', () => isMouseDown = true);
 document.addEventListener('mouseup', () => isMouseDown = false);
 
@@ -17,21 +16,21 @@ let createBoard = (length) => {
         for (let j = 0; j < length; j++) {
             let square = document.createElement('div');
             square.classList.add('square');
-            square.addEventListener('mousedown', colorIn);
-            square.addEventListener('mouseover', colorInHover);
+            square.addEventListener('mousedown', (event) => colorIn.call(square, color));
+            square.addEventListener('mouseover', (event) => colorInHover.call(square, color));
             row.appendChild(square);
         }
         board.appendChild(row);
     };
 }
 
-function colorIn() {
-    this.style.backgroundColor = 'black';
+function colorIn(color) {
+    this.style.backgroundColor = color;
 }
 
-function colorInHover() {
+function colorInHover(color) {
     if (isMouseDown) {
-        this.style.backgroundColor = 'black';
+        this.style.backgroundColor = color;
     }
 }
 
@@ -47,13 +46,12 @@ clear.addEventListener('click', function(){
     });
 });
 
-// How can we make this not repeat?
-let length = slider.value;
-createBoard(length);
-updateBoardSize(length);
-
 slider.oninput = function() {
     length = this.value;
     createBoard(length);
     updateBoardSize(length);
 };
+
+// Initialization
+createBoard(length);
+updateBoardSize(length);
