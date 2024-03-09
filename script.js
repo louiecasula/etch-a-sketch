@@ -33,10 +33,17 @@ function updateColor() {
         case('shade'):
             return 'grey';
         case('rainbow'):
-            return 'pink';
+            return randomColor();
         default:
             return 'black';
     }
+}
+
+function randomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return `rgb(${r},${g},${b})`;
 }
 
 function colorIn(color) {
