@@ -64,6 +64,7 @@ main {
     align-items: center;
     gap: 10px;
     font-size: 2em;
+    font-weight: bold;
 }
 
 .dimension {
