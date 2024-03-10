@@ -1,28 +1,29 @@
 const board = document.querySelector('.board');
-const slider = document.getElementById("myRange");
-let length = slider.value;
-const boardSize = document.querySelector('.boardSize');
+const sizeSlider = document.getElementById("myRange");
+const boardSizeHeader = document.querySelector('.boardSize');
 
+// Default settings
+let boardSize = sizeSlider.value; // 16 x 16
 let currentMode = 'normal';
-let color = 'black';
-
+let currentColor = 'black';
 let isMouseDown = false;
 
-let createBoard = (length) => {
-    board.innerHTML = ``;
-    for (let i = 0; i < length; i++) {
+let createBoard = (boardSize) => {
+    board.innerHTML = ``; // Remove any previous squares
+    for (let i = 0; i < boardSize; i++) {
         let row = document.createElement('div');
         row.classList.add('row');
-        for (let j = 0; j < length; j++) {
+        for (let j = 0; j < boardSize; j++) {
             let square = document.createElement('div');
             square.classList.add('square');
+            // Allow squares to be clicked, or clicked and hovered over, to color them in
             square.addEventListener('mousedown', (event) => {
                 event.preventDefault();
                 isMouseDown = true;
-                colorIn.call(square);
+                colorInSquare.call(square);
             });
             square.addEventListener('mouseup', () => isMouseDown = false);
-            square.addEventListener('mouseover', colorInHover);
+            square.addEventListener('mouseover', colorInSquareOnHover);
             row.appendChild(square);
         }
         board.appendChild(row);
@@ -32,22 +33,22 @@ let createBoard = (length) => {
 function updateColor() {
     switch(currentMode){
         case('erase'):
-            return erase();
+            return resetColorToWhite();
         case('shade'):
             return darkenColor();
         case('rainbow'):
-            return randomColor();
+            return generateRandomColor();
         default:
             return 'black';
     }
 }
 
-function erase() {
+function resetColorToWhite() {
     this.style.backgroundColor = 'white';
     this.setAttribute('darkness', '0');
 }
 
-function randomColor() {
+function generateRandomColor() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
@@ -62,26 +63,26 @@ function darkenColor() {
     this.style.backgroundColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
 }
 
-function colorIn() {
+function colorInSquare() {
     if (currentMode === 'shade') { darkenColor.call(this); } 
-    else if (currentMode === 'erase') { erase.call(this); }
+    else if (currentMode === 'erase') { resetColorToWhite.call(this); }
     else { this.style.backgroundColor = updateColor(); }
 }
 
-function colorInHover() {
+function colorInSquareOnHover() {
     if (isMouseDown) {
         if (currentMode === 'shade') { darkenColor.call(this); } 
-        else if (currentMode === 'erase') { erase.call(this); }
+        else if (currentMode === 'erase') { resetColorToWhite.call(this); }
         else { this.style.backgroundColor = updateColor(); }
     }
 }
 
-let updateBoardSize = (length) => {
-    boardSize.innerHTML = `<h3 class="dimension">${length} x ${length}</h3>`;
+let updateBoardSize = (boardSize) => {
+    boardSizeHeader.innerHTML = `<h3 class="dimension">${boardSize} x ${boardSize}</h3>`;
 }
 
-const clear = document.querySelector('#clear');
-clear.addEventListener('click', function(){
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', function(){
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
         square.style.cssText = 'background-color: white;';
@@ -89,19 +90,19 @@ clear.addEventListener('click', function(){
     });
 });
 
-slider.oninput = function() {
-    length = this.value;
-    createBoard(length);
-    updateBoardSize(length);
+sizeSlider.oninput = function() {
+    boardSize = this.value;
+    createBoard(boardSize);
+    updateBoardSize(boardSize);
 };
 
-const settings = document.querySelectorAll('.mode');
-settings.forEach(setting => {
+const radioButtons = document.querySelectorAll('.mode');
+radioButtons.forEach(setting => {
     setting.addEventListener('change', function() {
         currentMode = setting.id;
     })
 })
 
 // Initialization
-createBoard(length);
-updateBoardSize(length);
+createBoard(boardSize);
+updateBoardSize(boardSize);
