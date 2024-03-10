@@ -32,7 +32,7 @@ let createBoard = (length) => {
 function updateColor() {
     switch(currentMode){
         case('erase'):
-            return 'white';
+            return erase();
         case('shade'):
             return darkenColor();
         case('rainbow'):
@@ -40,6 +40,11 @@ function updateColor() {
         default:
             return 'black';
     }
+}
+
+function erase() {
+    this.style.backgroundColor = 'white';
+    this.setAttribute('darkness', '0');
 }
 
 function randomColor() {
@@ -58,20 +63,16 @@ function darkenColor() {
 }
 
 function colorIn() {
-    if (currentMode === 'shade') {
-        darkenColor.call(this);
-    } else {
-        this.style.backgroundColor = updateColor();
-    }
+    if (currentMode === 'shade') { darkenColor.call(this); } 
+    else if (currentMode === 'erase') { erase.call(this); }
+    else { this.style.backgroundColor = updateColor(); }
 }
 
 function colorInHover() {
     if (isMouseDown) {
-        if (currentMode === 'shade') {
-            darkenColor.call(this);
-        } else {
-            this.style.backgroundColor = updateColor();
-        }
+        if (currentMode === 'shade') { darkenColor.call(this); } 
+        else if (currentMode === 'erase') { erase.call(this); }
+        else { this.style.backgroundColor = updateColor(); }
     }
 }
 
