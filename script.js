@@ -7,8 +7,6 @@ let currentMode = 'normal';
 let color = 'black';
 
 let isMouseDown = false;
-document.addEventListener('mousedown', () => isMouseDown = true);
-document.addEventListener('mouseup', () => isMouseDown = false);
 
 let createBoard = (length) => {
     board.innerHTML = ``;
@@ -18,7 +16,12 @@ let createBoard = (length) => {
         for (let j = 0; j < length; j++) {
             let square = document.createElement('div');
             square.classList.add('square');
-            square.addEventListener('mousedown', colorIn);
+            square.addEventListener('mousedown', (event) => {
+                event.preventDefault();
+                isMouseDown = true;
+                colorIn.call(square);
+            });
+            square.addEventListener('mouseup', () => isMouseDown = false);
             square.addEventListener('mouseover', colorInHover);
             row.appendChild(square);
         }
