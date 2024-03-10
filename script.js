@@ -18,8 +18,8 @@ let createBoard = (length) => {
         for (let j = 0; j < length; j++) {
             let square = document.createElement('div');
             square.classList.add('square');
-            square.addEventListener('mousedown', (event) => colorIn.call(square, color));
-            square.addEventListener('mouseover', (event) => colorInHover.call(square, color));
+            square.addEventListener('mousedown', colorIn);
+            square.addEventListener('mouseover', colorInHover);
             row.appendChild(square);
         }
         board.appendChild(row);
@@ -31,7 +31,7 @@ function updateColor() {
         case('erase'):
             return 'white';
         case('shade'):
-            return 'grey';
+            return darkenColor();
         case('rainbow'):
             return randomColor();
         default:
@@ -46,15 +46,29 @@ function randomColor() {
     return `rgb(${r},${g},${b})`;
 }
 
-function colorIn(color) {
-    color = updateColor();
-    this.style.backgroundColor = color;
+function darkenColor() {
+    let currentDarkness = this.getAttribute('darkness') || 0;
+    currentDarkness = Math.min(1, parseFloat(currentDarkness) + 0.1);
+    this.setAttribute('darkness', currentDarkness);
+    let colorValue = Math.round((1 - currentDarkness) * 255);
+    this.style.backgroundColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
 }
 
-function colorInHover(color) {
+function colorIn() {
+    if (currentMode === 'shade') {
+        darkenColor.call(this);
+    } else {
+        this.style.backgroundColor = updateColor();
+    }
+}
+
+function colorInHover() {
     if (isMouseDown) {
-        color = updateColor();
-        this.style.backgroundColor = color;
+        if (currentMode === 'shade') {
+            darkenColor.call(this);
+        } else {
+            this.style.backgroundColor = updateColor();
+        }
     }
 }
 
@@ -66,7 +80,8 @@ const clear = document.querySelector('#clear');
 clear.addEventListener('click', function(){
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
-        square.style.cssText = 'background-color: white';
+        square.style.cssText = 'background-color: white;';
+        square.setAttribute('darkness', '0');
     });
 });
 
