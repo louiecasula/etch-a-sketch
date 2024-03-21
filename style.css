@@ -67,6 +67,10 @@ main {
     font-weight: bold;
 }
 
+button:hover, label:hover, input:hover{
+    cursor: pointer;
+}
+
 .dimension {
     margin: 0;
 }
